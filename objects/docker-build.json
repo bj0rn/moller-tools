@@ -1,0 +1,36 @@
+{
+    "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "docker-build",
+        "creationTimestamp": null
+    },
+    "spec": {
+        "triggers": [],
+        "runPolicy": "Serial",
+        "source": {
+            "type": "Git",
+            "git": {
+                "uri": "https://git-lovin",
+                "ref": "develop"
+            }
+        },
+        "strategy": {
+            "type": "Docker",
+            "dockerStrategy": {
+                "dockerfilePath": "src/Dockerfile"
+            }
+        },
+        "output": {
+            "to": {
+                "kind": "DockerImage",
+                "name": "moller-registry"
+            }
+        },
+        "resources": {},
+        "postCommit": {}
+    },
+    "status": {
+        "lastVersion": 0
+    }
+}

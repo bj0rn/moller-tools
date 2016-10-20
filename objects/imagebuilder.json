@@ -1,0 +1,50 @@
+{
+    "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "imagebuilder",
+        "creationTimestamp": null,
+        "labels": {
+            "name": "imagebuilder"
+        }
+    },
+    "spec": {
+        "triggers": [],
+        "runPolicy": "Serial",
+        "source": {
+            "type": "None"
+        },
+        "strategy": {
+            "type": "Custom",
+            "customStrategy": {
+                "from": {
+                    "kind": "DockerImage",
+                    "name": "moller-registy:5000/tools/image-builder:1.1.0"
+                },
+                "env": [
+                    {
+                        "name": "REGISTRY",
+                        "value": "docker-registry.aurora.sits.no:5000"
+                    },
+                    {
+                        "name": "GIT_BASE_ADDR",
+                        "value": "https://user:pass@git.sits.no/git/scm/ao"
+                    },
+                    {
+                        "name": "GIT_PROJECT"
+                    },
+                    {
+                        "name": "BRANCH_NAME"
+                    }
+                ],
+                "exposeDockerSocket": true
+            }
+        },
+        "output": {},
+        "resources": {},
+        "postCommit": {}
+    },
+    "status": {
+        "lastVersion": 0
+    }
+}
